@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "@base/": "./src/",
+    "@core/": "./src/core/"
+  }
+}
