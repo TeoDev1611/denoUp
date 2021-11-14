@@ -1,6 +1,8 @@
 {
   "imports": {
-    "src/":"./src/",
-    "@/":"./"
+    "src/": "./src/",
+    "@/": "./",
+    "cmds/": "./src/commands/",
+    "toml/": "./src/toml_parse/"
   }
 }
