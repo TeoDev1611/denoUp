@@ -1,6 +1,7 @@
 import { cliffyCmd } from "src/deps.ts";
 import { tomlCmd } from "cmds/toml.ts";
 import { returnDenoUpData } from "toml/parse.ts";
+import { generateDenoUpProject } from "toml/init.ts";
 
 if (Deno.args.length === 0) {
   console.info("For use denoUp and show the commands run <denoUp -h>");
@@ -17,5 +18,10 @@ const { options } = await new cliffyCmd.Command()
 
 if (options.info === true) {
   console.log(returnDenoUpData());
+  Deno.exit(0);
+}
+
+if (options.start === true) {
+  generateDenoUpProject();
   Deno.exit(0);
 }
