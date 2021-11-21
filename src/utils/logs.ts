@@ -15,7 +15,7 @@ await log.setup({
   loggers: {
     default: {
       level: "INFO",
-      handlers: ["file"],
+      handlers: ["file", "console"],
     },
   },
 });

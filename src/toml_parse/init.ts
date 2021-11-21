@@ -18,7 +18,8 @@ charset = utf-8
 const ask = new askPrompt.default();
 
 export async function generateDenoUpProject() {
-  if (existsFile(path.join(currentDir, "DenoUp.toml"))) {
+  const DenoUpFile: boolean = existsFile(path.join(currentDir, "DenoUp.toml"));
+  if (DenoUpFile == true) {
     error(
       "Exists the DenoUp file and the current project delete the file for create a new project",
     );

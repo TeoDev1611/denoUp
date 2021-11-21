@@ -4,6 +4,6 @@
     "@/": "./",
     "cmds/": "./src/commands/",
     "toml/": "./src/toml_parse/",
-    "utils/":"./src/utils/"
+    "utils/": "./src/utils/"
   }
 }
