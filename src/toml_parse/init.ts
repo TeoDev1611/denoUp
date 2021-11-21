@@ -1,7 +1,8 @@
-import { cliffyPrompt, log, path } from "src/deps.ts";
+import { askPrompt, path } from "src/deps.ts";
+import { currentDir, existsFile } from "utils/files.ts";
+import { error, info } from "utils/logs.ts";
 
-const currentDir: string = Deno.cwd();
-const dataEditorConfig = `
+export const editorConfigData = `
 # EditorConfig is awesome: https://EditorConfig.org
 
 # top-most EditorConfig file
@@ -14,42 +15,44 @@ end_of_line = crlf
 charset = utf-8
 `;
 
-export async function generateDenoUpProject() {
-  const resultPrompt = await cliffyPrompt.prompt([{
-    name: "prjname",
-    message: "What is your project name?",
-    type: cliffyPrompt.Input,
-  }, {
-    name: "description",
-    message: "Description about your project?",
-    type: cliffyPrompt.Input,
-  }, {
-    name: "license",
-    message: "Choose the license for your project",
-    list: true,
-    info: true,
-    suggestions: [
-      "MIT",
-      "Apache License 2.0",
-      "GNU v3.0",
-      "BSD 2",
-      "BSD 3",
-      "Unlicensed",
-    ],
-    type: cliffyPrompt.Input,
-  }, {
-    name: "version",
-    message: "What the version about your project?",
-    type: cliffyPrompt.Input,
-  }, {
-    name: "create",
-    message: "Create the project?",
-    type: cliffyPrompt.Confirm,
-  }]);
+const ask = new askPrompt.default();
 
-  console.log(resultPrompt);
-  Deno.mkdir(path.join(currentDir, "src"));
-  log.info("[ DENOUP ]: Created the src folder");
-  Deno.writeTextFile(path.join(currentDir, ".editorconfig"), dataEditorConfig);
-  log.info("[ DENOUP ]: Created the editorconfig file");
+export async function generateDenoUpProject() {
+  if (existsFile(path.join(currentDir, "DenoUp.toml"))) {
+    error(
+      "Exists the DenoUp file and the current project delete the file for create a new project",
+    );
+  } else {
+    Deno.mkdir(path.join(currentDir, "src"));
+    info("The src folder created");
+    await Deno.writeTextFile(
+      path.join(currentDir, ".editorconfig"),
+      editorConfigData,
+    );
+    info("The <.editorconfig> file created with the default config");
+
+    // Start the terminal prompt
+
+    const answers = await ask.prompt([
+      {
+        name: "projectName",
+        message: "Project Name ? ( NextChat ):",
+      },
+      {
+        name: "version",
+        message: "Version ? ( 1.0 ):",
+      },
+      {
+        name: "license",
+        message: "License ? ( MIT ):",
+      },
+      {
+        name: "generateProject",
+        type: "confirm",
+        message: "Create the DenoProject ? ( y, n )",
+      },
+    ]);
+
+    console.log(answers);
+  }
 }

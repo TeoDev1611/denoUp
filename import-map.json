@@ -3,6 +3,7 @@
     "src/": "./src/",
     "@/": "./",
     "cmds/": "./src/commands/",
-    "toml/": "./src/toml_parse/"
+    "toml/": "./src/toml_parse/",
+    "utils/":"./src/utils/"
   }
 }
