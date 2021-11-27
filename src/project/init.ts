@@ -16,48 +16,29 @@ end_of_line = crlf
 charset = utf-8
 `;
 
-const ask = new Ask();
-
-// Start the terminal prompt
-
-const answers = await ask.prompt([
-  {
-    name: "projectName",
-    message: "Project Name ? ( NextChat ):",
-  },
-  {
-    name: "version",
-    message: "Version ? ( 1.0 ):",
-  },
-  {
-    name: "license",
-    message: "License ? ( MIT ):",
-  },
-  {
-    name: "author",
-    message: "Author? ( Teo Dev ):",
-  },
-]);
-
-const tomlData = {
-  info: {
-    name: answers.projectName,
-    version: answers.version,
-    license: answers.license,
-    author: answers.author,
-  },
-  deps: {
-    exampleDep: "https://deno.land/x/example/mod.ts",
-  },
-};
-
-export function generateDenoUpProject() {
+export function generateDenoUpProject(
+  projectName = "NextChat",
+  version = "1.0",
+  license = "MIT",
+  author = "Jhon Doe",
+) {
   const DenoUpFile: boolean = existsFile(path.join(currentDir, "DenoUp.toml"));
   if (DenoUpFile == true) {
     error(
       "Exists the DenoUp file and the current project delete the file for create a new project",
     );
   } else {
+    const tomlData = {
+      info: {
+        name: projectName,
+        version: version,
+        license: license,
+        author: author,
+      },
+      deps: {
+        exampleDepName: "https://deno.land/x/example/mod.ts",
+      },
+    };
     Deno.writeTextFileSync(
       path.join(currentDir, "DenoUp.toml"),
       tomlEncoding.stringify(tomlData),
