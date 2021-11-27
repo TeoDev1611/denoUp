@@ -1,5 +1,5 @@
 import { cliffyCmd } from "src/deps.ts";
-import { tomlCmd } from "cmds/toml.ts";
+import { projectCmd } from "cmds/project.ts";
 import { returnDenoUpData } from "toml/parse.ts";
 import { generateDenoUpProject } from "toml/init.ts";
 
@@ -12,7 +12,7 @@ const { options } = await new cliffyCmd.Command()
   .name("denoUp")
   .version("1.0")
   .description("The better way to start a new Deno Project")
-  .command("toml", tomlCmd)
+  .command("project", projectCmd)
   .usage("<command> --flag")
   .parse(Deno.args);
 

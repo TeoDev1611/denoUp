@@ -4,4 +4,4 @@ version = 1.0
 license = "MIT"
 
 [deps]
-cliffyCmd = "deno.land/x/cliffy@cliffy@v0.20.1/command/mod.ts"
+cliffyCmd = "deno.land/x/cliffy@v0.20.1/command/mod.ts"

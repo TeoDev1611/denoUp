@@ -1,5 +1,5 @@
 import { path, tomlEncoding } from "src/deps.ts";
-import Ask from "https://deno.land/x/ask/mod.ts";
+import Ask from "https://deno.land/x/ask@1.0.6/mod.ts";
 import { currentDir, existsFile } from "utils/files.ts";
 import { error, info } from "utils/logs.ts";
 
