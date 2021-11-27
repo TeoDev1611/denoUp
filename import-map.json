@@ -4,6 +4,7 @@
     "@/": "./",
     "cmds/": "./src/commands/",
     "project/": "./src/project/",
-    "utils/": "./src/utils/"
+    "utils/": "./src/utils/",
+    "info/": "./src/info/"
   }
 }

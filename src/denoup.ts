@@ -1,6 +1,8 @@
 import { cliffyCmd } from "src/deps.ts";
 import { projectCmd } from "cmds/project.ts";
 import { infoCmd } from "cmds/info.ts";
+import { openRepoUrlBug } from "info/bugs.ts";
+import { openLogPath } from "info/logs.ts";
 import { returnDenoUpData } from "project/parse.ts";
 import { generateDenoUpProject } from "project/init.ts";
 
@@ -34,6 +36,16 @@ if (options.start === true) {
     licenseProject,
     authorProject,
   );
+  Deno.exit(0);
+}
+
+if (options.bugs === true) {
+  openRepoUrlBug();
+  Deno.exit(0);
+}
+
+if (options.logs === true) {
+  openLogPath();
   Deno.exit(0);
 }
 
