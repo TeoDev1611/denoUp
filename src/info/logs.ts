@@ -1,11 +1,12 @@
-import { currentDir, getLogPath } from "utils/files.ts";
+import { getLogPath } from "utils/files.ts";
 import { info } from "utils/logs.ts";
-import { path } from "src/deps.ts";
+
+export const logFilePath: string = getLogPath("denoup.log");
 
 export function openLogPath() {
-  const stringData: string = Deno.readTextFileSync(
-    path.join(currentDir, getLogPath("denoUp.log")),
-  );
-  info(`Here's the path for the logger: ${getLogPath("denoUp.log")} \n`);
+  info(`Here's the path for the logger: ${logFilePath} \n`);
+  const stringData: string = Deno.readTextFileSync(logFilePath);
+  console.log("-----------------------------");
+  console.log("File log Info");
   console.log(stringData);
 }

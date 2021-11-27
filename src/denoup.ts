@@ -48,5 +48,4 @@ if (options.logs === true) {
   openLogPath();
   Deno.exit(0);
 }
-
 console.log(options);
